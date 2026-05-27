@@ -49,6 +49,11 @@
   </categories>
   <content_rating type="oars-1.1" />
   <releases>
+    <release version="1.6.6" date="2026-05-27">
+      <description>
+        <p>Fixed "path is not mounted" error in some edge cases related to btrfs subvolumes</p>
+      </description>
+    </release>
     <release version="1.6.5" date="2026-05-16">
       <description>
         <p>Added additional methods of detecting game version</p>

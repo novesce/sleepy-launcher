@@ -91,19 +91,14 @@ impl SimpleComponent for AboutDialog {
             ].join("\n"),
 
             set_release_notes_version: &APP_VERSION,
-            set_release_notes: &[
-                "<p>Added</p>",
+            set_release_notes:
+                r#"
+                <p>Fixed</p>
 
-                "<ul>",
-                    "<li>Added additional methods of detecting game version</li>",
-                "</ul>",
-
-                "<p>Fixed</p>",
-
-                "<ul>",
-                    "<li>Fixed game version detection on import</li>",
-                "</ul>"
-            ].join("\n"),
+                <ul>
+                    <li>Fixed "path is not mounted" error in some edge cases related to btrfs subvolumes</li>
+                "</ul>
+                "#,
 
             set_modal: true,
             set_hide_on_close: true,
