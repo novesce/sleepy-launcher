@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.6] - 2026-05-27
+
+### Fixed
+
+- Fixed "path is not mounted" error in some edge cases related to btrfs subvolumes
+
 ## [1.6.5] - 2026-05-16
 
 ### Added
@@ -167,7 +173,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <br>
 
-[unreleased]: https://github.com/an-anime-team/sleepy-launcher/compare/1.6.5...next
+[unreleased]: https://github.com/an-anime-team/sleepy-launcher/compare/1.6.6...next
+[1.6.6]: https://github.com/an-anime-team/sleepy-launcher/compare/1.6.5...1.6.6
 [1.6.5]: https://github.com/an-anime-team/sleepy-launcher/compare/1.6.4...1.6.5
 [1.6.4]: https://github.com/an-anime-team/sleepy-launcher/compare/1.6.3...1.6.4
 [1.6.3]: https://github.com/an-anime-team/sleepy-launcher/compare/1.6.2...1.6.3
