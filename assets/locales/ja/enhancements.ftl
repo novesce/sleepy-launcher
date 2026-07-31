@@ -33,6 +33,9 @@ performance = パフォーマンス
 
 gamemode = ゲームモード
 gamemode-description = 他のプロセスよりもゲームを優先する。
+
+launch-with-dx12 = Launch with DX12
+launch-with-dx12-description = Run the game with the DX12 renderer
 gamescope = ゲームスコープ
 gamescope-description = これは、Xwaylandセッションでインスタンスを分離して実行するためのValveが開発したツールです。AMD、Intel、NvidiaのGPUをサポートします。
 
