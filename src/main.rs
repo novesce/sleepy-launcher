@@ -133,22 +133,24 @@ lazy_static::lazy_static! {
 
 /// Actually document the launcher's command line options
 fn print_help() {
-    println!("Sleepy Launcher {APP_VERSION}");
-    println!();
-    println!("Usage:");
-    println!("  sleepy-launcher [OPTION...]");
-    println!();
-    println!("Options:");
-    println!("  -h, --help            Show this help message and exit");
-    println!("  --debug               Force debug output in stdout");
-    println!("  --no-verbose-tracing  Disable verbose tracing output in stdout");
-    println!("  --run-game            Launch the game right away if it's ready to run,");
-    println!("                        otherwise open the launcher window");
-    println!("  --just-run-game       Same as --run-game, but also launches the game when");
-    println!("                        an update is available for predownload");
-    println!("  --session <NAME>      Switch to the given session before starting");
-    println!();
-    println!("GTK options are supported as well. Use --help-all to list them.");
+    println!(r#"
+Sleepy Launcher {APP_VERSION}
+
+Usage:
+  sleepy-launcher [OPTION...]
+
+Options:
+  -h, --help            Show this help message and exit
+  --debug               Force debug output in stdout
+  --no-verbose-tracing  Disable verbose tracing output in stdout
+  --run-game            Launch the game right away if it's ready to run,
+                        otherwise open the launcher window
+  --just-run-game       Same as --run-game, but also launches the game when
+                        an update is available for predownload
+  --session <NAME>      Switch to the given session before starting
+
+GTK options are supported as well. Use --help-all to list them.
+    "#);
 }
 
 fn main() -> anyhow::Result<()> {
