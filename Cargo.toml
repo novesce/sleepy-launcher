@@ -38,10 +38,6 @@ whatadistro = "0.1.0"
 
 serde_json = "1.0"
 anyhow = "1.0"
-
-tar = "0.4"
-zstd = "0.13"
-flate2 = "1.1"
 lazy_static = "1.5.0"
 cached = { version = "0.53", features = ["proc_macro"] }
 md-5 = { version = "0.10", features = ["asm"] }

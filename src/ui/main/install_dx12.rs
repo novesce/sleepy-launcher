@@ -71,18 +71,17 @@ fn download_file(uri: &str, output: &Path, progress_bar_input: &Sender<ProgressB
     Ok(())
 }
 
-fn extract_tar_zst(archive: &Path, dest: &Path) -> anyhow::Result<()> {
-    let decoder = zstd::stream::read::Decoder::new(std::fs::File::open(archive)?)?;
+fn extract_archive(archive: &Path, dest: &Path) -> anyhow::Result<()> {
+    let output = std::process::Command::new("tar")
+        .arg("-xf")
+        .arg(archive)
+        .arg("-C")
+        .arg(dest)
+        .output()?;
 
-    tar::Archive::new(decoder).unpack(dest)?;
-
-    Ok(())
-}
-
-fn extract_tar_gz(archive: &Path, dest: &Path) -> anyhow::Result<()> {
-    let decoder = flate2::read::GzDecoder::new(std::fs::File::open(archive)?);
-
-    tar::Archive::new(decoder).unpack(dest)?;
+    if !output.status.success() {
+        anyhow::bail!("failed to extract {}: {}", archive.display(), String::from_utf8_lossy(&output.stderr).trim());
+    }
 
     Ok(())
 }
@@ -169,7 +168,7 @@ fn install_vkd3d(
 
     let _ = std::fs::remove_dir_all(&extract_dir);
     std::fs::create_dir_all(&extract_dir)?;
-    extract_tar_zst(&archive, &extract_dir)?;
+    extract_archive(&archive, &extract_dir)?;
 
     let root = find_arch_root(&extract_dir)?;
 
@@ -213,7 +212,7 @@ fn install_nvapi(
 
     let _ = std::fs::remove_dir_all(&extract_dir);
     std::fs::create_dir_all(&extract_dir)?;
-    extract_tar_gz(&archive, &extract_dir)?;
+    extract_archive(&archive, &extract_dir)?;
 
     let root = find_arch_root(&extract_dir)?;
 
