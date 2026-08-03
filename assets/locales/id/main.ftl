@@ -93,3 +93,6 @@ timeout-fix-detected-description =
     Do you want to enable it?
 
 import-game = Import game
+
+install-dx12 = Install DX12 support
+dx12-install-failed = Failed to install DX12 support
