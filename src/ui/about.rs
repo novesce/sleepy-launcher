@@ -93,11 +93,19 @@ impl SimpleComponent for AboutDialog {
             set_release_notes_version: &APP_VERSION,
             set_release_notes:
                 r#"
-                <p>Fixed</p>
+                <p>Added</p>
 
                 <ul>
-                    <li>Fixed "path is not mounted" error in some edge cases related to btrfs subvolumes</li>
-                "</ul>
+                    <li>Added option to enable DirectX 12 support</li>
+                    <li>Added NTSync as a wine sync method (cosmetic/no-op, NTSync is used automatically on supported wine versions)</li>
+                    <li>Added command-line arguments help text</li>
+                </ul>
+
+                <p>Changed</p>
+
+                <ul>
+                    <li>Improved readability of progress bar text</li>
+                </ul>
                 "#,
 
             set_modal: true,

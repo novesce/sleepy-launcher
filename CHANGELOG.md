@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.0] - 2026-08-05
+
+### Added
+
+- Added option to enable DirectX 12 support
+- Added NTSync as a wine sync method (cosmetic/no-op, NTSync is used automatically on supported wine versions)
+- Added command-line arguments help text
+
+### Changed
+
+- Improved readability of progress bar text
+
 ## [1.6.6] - 2026-05-27
 
 ### Fixed
@@ -173,7 +185,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 <br>
 
-[unreleased]: https://github.com/an-anime-team/sleepy-launcher/compare/1.6.6...next
+[unreleased]: https://github.com/an-anime-team/sleepy-launcher/compare/1.7.0...next
+[1.7.0]: https://github.com/an-anime-team/sleepy-launcher/compare/1.6.6...1.7.0
 [1.6.6]: https://github.com/an-anime-team/sleepy-launcher/compare/1.6.5...1.6.6
 [1.6.5]: https://github.com/an-anime-team/sleepy-launcher/compare/1.6.4...1.6.5
 [1.6.4]: https://github.com/an-anime-team/sleepy-launcher/compare/1.6.3...1.6.4
