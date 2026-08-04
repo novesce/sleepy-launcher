@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Added option to enable DirectX 12 support
-- Added NTSync as a wine sync method
+- Added NTSync as a wine sync method (cosmetic/no-op, NTSync is used automatically on supported wine versions)
 - Added command-line arguments help text
 
 ### Changed
