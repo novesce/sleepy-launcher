@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added option to enable DirectX 12 support
+- Added NTSync as a wine sync method
+- Added command-line arguments help text
+
+### Changed
+
+- Improved readability of progress bar text
+
 ## [1.6.6] - 2026-05-27
 
 ### Fixed
