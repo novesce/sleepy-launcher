@@ -49,6 +49,14 @@
   </categories>
   <content_rating type="oars-1.1" />
   <releases>
+    <release version="1.7.0" date="2026-08-05">
+      <description>
+        <p>Added option to enable DirectX 12 support</p>
+        <p>Added NTSync as a wine sync method (cosmetic/no-op, NTSync is used automatically on supported wine versions)</p>
+        <p>Added command-line arguments help text</p>
+        <p>Improved readability of progress bar text</p>
+      </description>
+    </release>
     <release version="1.6.6" date="2026-05-27">
       <description>
         <p>Fixed "path is not mounted" error in some edge cases related to btrfs subvolumes</p>
