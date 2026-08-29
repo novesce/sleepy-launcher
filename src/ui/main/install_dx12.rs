@@ -14,6 +14,7 @@ use anime_launcher_sdk::anime_game_core::minreq;
 use anime_launcher_sdk::anime_game_core::installer::downloader::Downloader;
 
 use crate::*;
+use crate::dlss::find_nvidia_wine_dll_dir;
 use crate::ui::components::*;
 
 use super::{App, AppMsg};
@@ -113,36 +114,6 @@ fn copy_dll(from: &Path, to_dir: &Path) -> anyhow::Result<()> {
     Ok(())
 }
 
-// locate the host nvidia driver's "nvidia/wine" dir that ships nvngx.dll / _nvngx.dll
-// proton derives this as dirname(libGLX_nvidia.so.0)/nvidia/wine, but
-// resolves the .so via dlopen and dlinfo, while we resolve it from the ldconfig cache instead
-// https://github.com/ValveSoftware/Proton/blob/0745bfbc4cf4365e8cf048b003990c59def29948/proton#L376
-fn find_nvidia_wine_dll_dir() -> Option<PathBuf> {
-    if let Ok(output) = std::process::Command::new("ldconfig").arg("-p").output() {
-        let stdout = String::from_utf8_lossy(&output.stdout);
-
-        for line in stdout.lines() {
-            if !line.contains("libGLX_nvidia.so.0") {
-                continue;
-            }
-
-            if let Some(path) = line.split("=>").nth(1) {
-                if let Ok(real) = PathBuf::from(path.trim()).canonicalize() {
-                    if let Some(parent) = real.parent() {
-                        let dir = parent.join("nvidia").join("wine");
-
-                        if dir.join("nvngx.dll").exists() {
-                            return Some(dir);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    None
-}
-
 // install vkd3d-proton into the prefix
 // https://github.com/Winetricks/winetricks/blob/08304e81f9ac9a83c552a6bd78689040d174bf95/src/winetricks#L8279
 fn install_vkd3d(
@@ -223,6 +194,14 @@ fn install_nvapi(
     for dll in ["nvapi", "nvapi64", "nvofapi64"] {
         wine.add_override(dll, [OverrideMode::Native])?;
     }
+
+    // Proton enables Wine's CUDA shim for NGX. Spritz also needs the native
+    // msasn1 fallback (when the user has supplied that Windows DLL) while
+    // keeping Wine's wintrust and crypt32 implementations.
+    wine.add_override("nvcuda", [OverrideMode::Builtin])?;
+    wine.add_override("msasn1", [OverrideMode::Native, OverrideMode::Builtin])?;
+    wine.add_override("wintrust", [OverrideMode::Builtin])?;
+    wine.add_override("crypt32", [OverrideMode::Builtin])?;
 
     // dxvk-nvapi needs the driver's nvngx dlls for dlss
     match find_nvidia_wine_dll_dir() {
